@@ -88,7 +88,8 @@ void cat(char* dst, char c){
  * Note: do not use the strlen() nor the strcmp() function.
  */
 int comp(const char* cstr1, const char* cstr2){
-    // TODO: implement this function
+    // TODO: remove the return 0 below and implement this function
+    return 0;
 }
 
 /**
@@ -109,6 +110,22 @@ bool is_substr(const char* sub, const char* str){
     // TODO: implement this function
     return false;
 }
+
+/**
+ * A function that checks if a given string is a palindrome.
+ * A palindrome is a string that reads the same both forwards and backwards.
+ * For this implementation, you can ignore case sensitivity.
+ * This means that 'a' and 'A' should be treated as the same character.
+ * 
+ * Return true if the given string is a palindrome, or false otherwise.
+ * 
+ * Example: racecar, lisabasil, aDamAda are all palindromes.
+ */
+bool is_palindrome(const char* str){
+    // TODO: implement the function
+    return true;
+}
+
 
 /**
  * Extra Credit:
