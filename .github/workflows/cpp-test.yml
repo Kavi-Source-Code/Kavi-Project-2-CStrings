@@ -1,6 +1,8 @@
 name: C/C++ CI
 
-on: [push, pull_request]
+on:
+  push:     # run on every push
+  pull_request:
 
 jobs:
   build:
@@ -9,21 +11,28 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Configure CMake
+    - name: Setup CMake
+      uses: jwlawson/actions-setup-cmake@v1
+
+    - name: Configure
       run: |
         mkdir -p build
-        cd build
-        cmake ..
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-    - name: Build
-      run: cmake --build build --config Release
-
-    - name: Run test binary (tests/test_cstr.cpp)
+    - name: Build cstr_tests target
       run: |
-        cd build
-        if [ -x ./cstr_tests ]; then
-          ./cstr_tests
+        cmake --build build --target cstr_tests --config Release
+
+    - name: Run cstr_tests executable
+      run: |
+        # try common locations for the built binary and execute it
+        if [ -x ./build/cstr_tests ]; then
+          ./build/cstr_tests
+        elif [ -x ./build/Release/cstr_tests ]; then
+          ./build/Release/cstr_tests
         else
+          # if the binary isn't found, fall back to ctest so CTest-registered tests still run
           echo "cstr_tests binary not found, running ctest instead"
+          cd build
           ctest --output-on-failure || true
         fi
