@@ -17,11 +17,11 @@ jobs:
     - name: Configure
       run: |
         mkdir -p build
-        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 
     - name: Build cstr_tests target
       run: |
-        cmake --build build --target cstr_tests --config Release
+        cmake --build build --target cstr_tests --config Debug
 
     - name: Run cstr_tests executable
       run: |
@@ -34,5 +34,5 @@ jobs:
           # if the binary isn't found, fall back to ctest so CTest-registered tests still run
           echo "cstr_tests binary not found, running ctest instead"
           cd build
-          ctest --output-on-failure || true
+          ctest --output-on-failure
         fi
