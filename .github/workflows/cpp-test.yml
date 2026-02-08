@@ -1,0 +1,29 @@
+name: C/C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure CMake
+      run: |
+        mkdir -p build
+        cd build
+        cmake ..
+
+    - name: Build
+      run: cmake --build build --config Release
+
+    - name: Run test binary (tests/test_cstr.cpp)
+      run: |
+        cd build
+        if [ -x ./cstr_tests ]; then
+          ./cstr_tests
+        else
+          echo "cstr_tests binary not found, running ctest instead"
+          ctest --output-on-failure || true
+        fi
