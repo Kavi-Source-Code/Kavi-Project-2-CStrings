@@ -17,7 +17,6 @@ void cat(char*, char);
 int comp(const char*, const char*);
 bool is_substr(const char*, const char*);
 
-
 // Extra credit:
 int count(const char*, char);
 char** tokenize(const char*, const char);
