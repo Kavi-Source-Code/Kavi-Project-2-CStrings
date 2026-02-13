@@ -1,4 +1,4 @@
-#include "./cstr.hpp"
+#include "../cstr.hpp"
 
 int main() {
     // length()

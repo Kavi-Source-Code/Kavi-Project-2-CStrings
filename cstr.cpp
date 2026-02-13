@@ -2,13 +2,28 @@
 
 /**
  * Returns the length of the given c string.
- * Hint: the end of a c string is denoted by '\n' 
- * 
+ * Hint: the end of a c string is denoted by '\0'
+ *
  * str - a c-string that cannot be changed within the function
  */
 int length(const char* str){
     // TODO: remove the return 0 below and implement this function
-    return 0;
+    int len = 0;
+    bool has_ended = false;
+    int i = 0;
+    while(!has_ended){
+        char current = str[i];
+        has_ended = current == '\0';
+        if(!has_ended){
+            ++len;
+            ++i;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return len;
 }
 
 /**
@@ -24,6 +39,13 @@ int length(const char* str){
  */
 void copy(char* dst, const char* src){
     // TODO: implement this function
+    // Use length, as I can't use strlen or strcpy :)
+    int check = length(src);
+    for(int i = 0; i < check; ++i){
+        dst[i] = src[i];
+    }
+    dst[check] = '\0';
+
 }
 
 /**
@@ -31,16 +53,32 @@ void copy(char* dst, const char* src){
  * Does not return anything.
  * 
  * Hint 1: see the hints from the copy() function.
- * Hint 2: if n is less than the # of characters from src, 
+ * Hint 2: if n is greater than the # of characters from src,
  *         then you can just call copy() instead.
  * Note: do not use the strlen() nor the strncpy() function.
- * 
+ *
+ *  "string" vs  8
+ *
  * dst - the destination str that will have its contents updated.
  * src - the source str that will copy its contents to the destination str.
  * n   - the number of characters to copy from src to dst
  */
 void ncopy(char* dst, const char* src, int n){
     // TODO: implement this function
+    // Use n, as this is custom.
+    int null_term_ind = 0;
+    int check = length(src);
+    // COPYING : Copy the strings with n OR use the copy() function
+    if(n > check){
+        copy(dst, src);
+        return;
+    }
+    for(int i = 0; i < n; ++i){
+        dst[i] = src[i];
+        null_term_ind = i;
+    }
+    dst[null_term_ind] = '\0';
+
 }
 
 /**
@@ -58,6 +96,14 @@ void ncopy(char* dst, const char* src, int n){
  */
 void cat(char* dst, const char* src){
     // TODO: implement this function
+    size_t dst_cap = sizeof(dst)/sizeof(dst[0]);
+    size_t src_cap = sizeof(src)/sizeof(src[0]);
+    
+    // dst = "the"; src = " problem"
+    // after calling cat(), dst = "the problem"
+    // 1. dst's next available index is at length(dst)
+    int check = length(src);
+    
 }
 
 /**
@@ -71,6 +117,14 @@ void cat(char* dst, const char* src){
  */
 void cat(char* dst, char c){
     // TODO: implement this function
+    size_t dst_cap = sizeof(dst)/sizeof(dst[0]);
+    int check = length(dst);
+    // A c_cap is pointless
+    if(dst_cap >= check){
+        dst[check] = c;
+        dst[check + 1] = '\0';
+    }
+    cerr << "error: size too small" << endl;
 }
 
 /**
@@ -83,7 +137,7 @@ void cat(char* dst, char c){
  * Return 1 if cstr1 comes after cstr2
  * Return 0 if cstr1 and cstr2 are equal
  * 
- * Hint 1: the lengths may not be equal.  If len(cstr1) < len(cstr2)
+ * Hint 1: the lengths may not be equal.  If len(cstr1)  < len(cstr2)
  *         and cstr1 is a substring of cstr2, return -1
  * Note: do not use the strlen() nor the strcmp() function.
  */
@@ -118,11 +172,18 @@ bool is_substr(const char* sub, const char* str){
  * This means that 'a' and 'A' should be treated as the same character.
  * 
  * Return true if the given string is a palindrome, or false otherwise.
- * 
+ *
+ * Hint: ascii table will help you with case insensitivity
+ *
  * Example: racecar, lisabasil, aDamAda are all palindromes.
  */
 bool is_palindrome(const char* str){
     // TODO: implement the function
+    
+    // Hint: keep track of 2 indexes: one at the front, one at the back.
+    
+    
+    
     return true;
 }
 

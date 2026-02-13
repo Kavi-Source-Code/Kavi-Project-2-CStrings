@@ -7,6 +7,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+using std::cerr;
 
 // Required functions
 int length(const char*);
