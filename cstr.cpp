@@ -8,6 +8,7 @@
  */
 int length(const char* str){
     // TODO: remove the return 0 below and implement this function
+    // MARK: Implementation
     int len = 0;
     bool has_ended = false;
     int i = 0;
@@ -39,7 +40,7 @@ int length(const char* str){
  */
 void copy(char* dst, const char* src){
     // TODO: implement this function
-    // Use length, as I can't use strlen or strcpy :)
+    // MARK: Use length, as I can't use strlen or strcpy :)
     int check = length(src);
     for(int i = 0; i < check; ++i){
         dst[i] = src[i];
@@ -68,7 +69,7 @@ void ncopy(char* dst, const char* src, int n){
     // Use n, as this is custom.
     int null_term_ind = 0;
     int check = length(src);
-    // COPYING : Copy the strings with n OR use the copy() function
+    // MARK: Copy the strings with n OR use the copy() function
     if(n > check){
         copy(dst, src);
         return;
@@ -96,6 +97,7 @@ void ncopy(char* dst, const char* src, int n){
  */
 void cat(char* dst, const char* src){
     // TODO: implement this function
+    // MARK: Implementation
     size_t dst_cap = sizeof(dst)/sizeof(dst[0]);
     size_t src_cap = sizeof(src)/sizeof(src[0]);
     
@@ -119,7 +121,7 @@ void cat(char* dst, char c){
     // TODO: implement this function
     size_t dst_cap = sizeof(dst)/sizeof(dst[0]);
     int check = length(dst);
-    // A c_cap is pointless
+    // MARK: A c_cap is pointless
     if(dst_cap >= check){
         dst[check] = c;
         dst[check + 1] = '\0';
@@ -133,17 +135,58 @@ void cat(char* dst, char c){
  * 
  * Link to ASCII Table for codes: https://www.asciitable.com
  * 
- * Return -1 if cstr1 comes before cstr2
- * Return 1 if cstr1 comes after cstr2
- * Return 0 if cstr1 and cstr2 are equal
- * 
+ * Return -1 if cstr1 comes before cstr2  (apple < bacon; apple vs apples)
+ * Return 1 if cstr1 comes after cstr2  (orange > banana)
+ * Return 0 if cstr1 and cstr2 are equal (watermelon == watermelon)
+ *
+ *
  * Hint 1: the lengths may not be equal.  If len(cstr1)  < len(cstr2)
  *         and cstr1 is a substring of cstr2, return -1
  * Note: do not use the strlen() nor the strcmp() function.
  */
 int comp(const char* cstr1, const char* cstr2){
     // TODO: remove the return 0 below and implement this function
-    return 0;
+    
+    // MARK: Statements
+    // [a, p, p, l, e] = length of 5
+    // [a, p, p, l, e, s] = length of 6
+    int smallerLen;
+    if(length(cstr1) < length(cstr2)){
+        smallerLen = length(cstr1);
+    }
+    
+    else{
+        smallerLen = length(cstr2);
+    }
+    
+    // MARK: For loop corresponding to the ascii table.
+    for (int i = 0; i < smallerLen; ++i) {
+        int ascii1 = (int)cstr1[i];
+        int ascii2 = (int)cstr2[i];
+        // MARK: Checks
+    
+        if (ascii1 < ascii2) {
+            return -1;
+        }
+            
+        else if (ascii1 > ascii2) {
+            return 1;
+        }
+        
+    }
+    
+    // apple vs apples, apples vs apple
+    if (smallerLen == length(cstr1) && length(cstr2) > smallerLen) {
+        return -1;
+    }
+    
+    else if (smallerLen == length(cstr2) && length(cstr1) > smallerLen){
+        return 1;
+    }
+    
+    else{
+        return 0;
+    }
 }
 
 /**
@@ -181,6 +224,11 @@ bool is_palindrome(const char* str){
     // TODO: implement the function
     
     // Hint: keep track of 2 indexes: one at the front, one at the back.
+    int front = 0;
+    int back = length(str) - 1;
+    
+    // MARK: front is increasing and back is decreasing (use a while loop)
+    
     
     
     
