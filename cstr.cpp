@@ -205,7 +205,22 @@ int comp(const char* cstr1, const char* cstr2){
  */
 bool is_substr(const char* sub, const char* str){
     // TODO: implement this function
-    return false;
+    int check = length(str);
+    int ind = 0;
+    if(length(sub) > check){
+        return false;
+    }
+    else{
+        for(int i = 0; i < check; ++i){
+            if(i == sub[ind]){
+                if(ind == length(sub)){
+                    return true;
+                }
+                ind += 1;
+            }
+        }
+        return false;
+    }
 }
 
 /**
@@ -232,7 +247,9 @@ bool is_palindrome(const char* str){
         front += 1;
         back -= 1;
     }
-
+    
+    
+    
     return true;
 }
 
