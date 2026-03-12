@@ -105,7 +105,10 @@ void cat(char* dst, const char* src){
     // after calling cat(), dst = "the problem"
     // 1. dst's next available index is at length(dst)
     int check = length(src);
-    
+    if(dst_cap >= check){
+        
+    }
+    cerr << "error: size too small" << endl;
 }
 
 /**
