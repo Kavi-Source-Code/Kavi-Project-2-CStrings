@@ -212,7 +212,7 @@ bool is_substr(const char* sub, const char* str){
     }
     else{
         for(int i = 0; i < check; ++i){
-            if(i == sub[ind]){
+            if(sub[i] == sub[ind]){
                 if(ind == length(sub)){
                     return true;
                 }
