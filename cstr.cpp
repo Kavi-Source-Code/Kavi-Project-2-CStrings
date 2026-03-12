@@ -242,14 +242,20 @@ bool is_palindrome(const char* str){
     int front = 0;
     int back = length(str) - 1;
     
+    
     // MARK: front is increasing and back is decreasing (use a while loop)
     while(front < back && back > front){
         front += 1;
         back -= 1;
     }
     
-    
-    
+    while (str[front] == str[0] && str[back] == str[length(str)-1])
+    {
+        if (!str[front] == str[0] || !str[back] == str[length(str) - 1]){
+            break;
+            return false;
+        }
+    }
     return true;
 }
 
