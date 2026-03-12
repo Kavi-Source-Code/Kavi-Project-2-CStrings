@@ -66,7 +66,7 @@ void copy(char* dst, const char* src){
  */
 void ncopy(char* dst, const char* src, int n){
     // TODO: implement this function
-    // Use n, as this is custom.
+    // MARK: Use n, as this is custom.
     int null_term_ind = 0;
     int check = length(src);
     // MARK: Copy the strings with n OR use the copy() function
@@ -76,7 +76,7 @@ void ncopy(char* dst, const char* src, int n){
     }
     for(int i = 0; i < n; ++i){
         dst[i] = src[i];
-        null_term_ind = i;
+        null_term_ind = i + 1;
     }
     dst[null_term_ind] = '\0';
 
