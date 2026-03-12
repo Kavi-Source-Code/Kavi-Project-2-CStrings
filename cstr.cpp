@@ -106,7 +106,10 @@ void cat(char* dst, const char* src){
     // 1. dst's next available index is at length(dst)
     int check = length(src);
     if(dst_cap >= check){
-        
+        for(int i = check; i < check + length(src); ++i){
+            dst[i] = src[i];
+        }
+        dst[check + length(src) + 1] = '\0';
     }
     cerr << "error: size too small" << endl;
 }
